@@ -1,7 +1,10 @@
 package com.example.renosyahputra.ebooklibrary
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -9,7 +12,6 @@ import android.widget.Toast
 import com.example.renosyahputra.pdfbrowserlibrary.PdfBrowserInit
 import com.example.renosyahputra.pdfviewerlibrary.PdfViewerInit
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 
 class MainActivity : AppCompatActivity(),
@@ -64,6 +66,14 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onChoosePdf(pdfBrowserData: PdfBrowserInit.PdfBrowserData) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setDataAndType(Uri.fromFile(pdfBrowserData.file), "application/pdf")
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+            startActivity(intent)
+        }
+
 
         pdfViewerInit.closePdf()
 
