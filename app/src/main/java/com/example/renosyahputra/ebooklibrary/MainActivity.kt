@@ -66,12 +66,44 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onChoosePdf(pdfBrowserData: PdfBrowserInit.PdfBrowserData) {
+
+        var pdfViewerInit = PdfViewerInit.newInstance()
+
         pdfViewerInit = PdfViewerInit.newInstance()
             .setContext(context)
             .setPdfFile(pdfBrowserData.file)
             .setPdfFileName(pdfBrowserData.filename)
-            .setOnPdfViewerListener(this)
-            .openPdf()
+            .setOnPdfViewerListener(object : PdfViewerInit.OnPdfViewerListener{
+                override fun onRenderPdf(bmp : Bitmap) {
+
+                    // halaman pdf akan di render menjadi bitmap
+                    // letakkan kode anda disini untuk
+                    // mengelola/menampilkan gambar
+
+                }
+
+                override fun onPageIndex(page : Int) {
+
+                    // page yg sedang dipilih
+
+                }
+
+                override fun onException(e: java.lang.Exception) {
+
+                    // exception
+
+                }
+
+            }).openPdf()
+
+
+            pdfViewerInit.previousPage()
+
+
+            pdfViewerInit.nextPage()
+
+
+            pdfViewerInit.closePdf()
     }
 
     override fun onBrowsingFinish() {
