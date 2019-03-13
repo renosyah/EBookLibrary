@@ -43,9 +43,9 @@ ext {
     artifact = 'PDF-Viewer-Library'
     libraryDescription = 'pdf viewer library, return pdf as bmp image'
 
-    siteUrl = 'https://github.com/renosyah/PDFViewerLibrary'
-    gitUrl = 'https://github.com/renosyah/PDFViewerLibrary.git'
-    githubRepository = 'renosyah/PDFViewerLibrary'
+    siteUrl = 'https://github.com/renosyah/EBookLibrary'
+    gitUrl = 'https://github.com/renosyah/EBookLibrary.git'
+    githubRepository = 'renosyah/EBookLibrary'
 
     libraryVersion = '1.0.0'
 
@@ -58,3 +58,6 @@ ext {
     allLicenses = ['Apache-2.0']
 
 }
+
+
+apply from: rootProject.file('release-bintray.gradle')

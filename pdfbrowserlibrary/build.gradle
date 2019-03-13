@@ -21,7 +21,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -47,9 +49,9 @@ ext {
     artifact = 'PDF-Browser-Library'
     libraryDescription = 'browser pdf file in gallery'
 
-    siteUrl = 'https://github.com/renosyah/PDFViewerLibrary'
-    gitUrl = 'https://github.com/renosyah/PDFViewerLibrary.git'
-    githubRepository = 'renosyah/PDFViewerLibrary'
+    siteUrl = 'https://github.com/renosyah/EBookLibrary'
+    gitUrl = 'https://github.com/renosyah/EBookLibrary.git'
+    githubRepository = 'renosyah/EBookLibrary'
 
     libraryVersion = '1.0.0'
 
@@ -62,3 +64,6 @@ ext {
     allLicenses = ['Apache-2.0']
 
 }
+
+
+apply from: rootProject.file('release-bintray.gradle')
