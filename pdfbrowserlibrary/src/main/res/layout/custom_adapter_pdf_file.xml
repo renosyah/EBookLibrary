@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp">
+
+        <ImageView
+                android:id="@+id/FileImageAdapter"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="false"
+                android:scaleType="fitXY" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="?android:attr/scrollbarThumbVertical">
+
+            <TextView
+                    android:id="@+id/FileNameAdapter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:shadowColor="@android:color/background_dark"
+                    android:shadowRadius="2"
+                    android:text="judul"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textEditSidePasteWindowLayout="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>
