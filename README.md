@@ -56,7 +56,7 @@ tambahkan ke app.gradle :
 ```
 
         PdfBrowserInit.newInstance()
-            .setContext(context)
+            .setContext(this)
             .setOnPdfBrowserListener(object : PdfBrowserInit.OnPdfBrowserListener{
                 override fun onChoosePdf(pdf : PdfBrowserInit.PdfBrowserData) {
                     
@@ -88,9 +88,9 @@ tambahkan ke app.gradle :
 	// pastikan untuk menginisialisasi ulang
 	// untuk jaga-jaga
         pdfViewerInit = PdfViewerInit.newInstance()
-            .setContext(context)
-            .setPdfFile(pdfBrowserData.file)
-            .setPdfFileName(pdfBrowserData.filename)
+            .setContext(this)
+            .setPdfFile(File("YOUR_PATH_TO_PDF"))
+            .setPdfFileName("YOUR_PDF_FILENAME")
             .setOnPdfViewerListener(object : PdfViewerInit.OnPdfViewerListener{
                 override fun onRenderPdf(bmp : Bitmap) {
                     
