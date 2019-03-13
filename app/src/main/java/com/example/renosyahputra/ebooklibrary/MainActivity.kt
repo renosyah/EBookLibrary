@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(),
 
 
     lateinit var context: Context
-    lateinit var pdfViewerInit : PdfViewerInit
+    var pdfViewerInit = PdfViewerInit.newInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onChoosePdf(pdfBrowserData: PdfBrowserInit.PdfBrowserData) {
-        
+
         pdfViewerInit.closePdf()
 
         pdfViewerInit = PdfViewerInit.newInstance()
