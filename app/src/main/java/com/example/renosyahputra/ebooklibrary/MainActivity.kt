@@ -48,8 +48,6 @@ class MainActivity : AppCompatActivity(),
         when (v){
             pdfImage -> {
 
-                pdfViewerInit.closePdf()
-
                 PdfBrowserInit.newInstance()
                     .setContext(context)
                     .setOnPdfBrowserListener(this)
@@ -66,44 +64,16 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onChoosePdf(pdfBrowserData: PdfBrowserInit.PdfBrowserData) {
-
-        var pdfViewerInit = PdfViewerInit.newInstance()
+        
+        pdfViewerInit.closePdf()
 
         pdfViewerInit = PdfViewerInit.newInstance()
             .setContext(context)
             .setPdfFile(pdfBrowserData.file)
             .setPdfFileName(pdfBrowserData.filename)
-            .setOnPdfViewerListener(object : PdfViewerInit.OnPdfViewerListener{
-                override fun onRenderPdf(bmp : Bitmap) {
+            .setOnPdfViewerListener(this)
+            .openPdf()
 
-                    // halaman pdf akan di render menjadi bitmap
-                    // letakkan kode anda disini untuk
-                    // mengelola/menampilkan gambar
-
-                }
-
-                override fun onPageIndex(page : Int) {
-
-                    // page yg sedang dipilih
-
-                }
-
-                override fun onException(e: java.lang.Exception) {
-
-                    // exception
-
-                }
-
-            }).openPdf()
-
-
-            pdfViewerInit.previousPage()
-
-
-            pdfViewerInit.nextPage()
-
-
-            pdfViewerInit.closePdf()
     }
 
     override fun onBrowsingFinish() {
