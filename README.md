@@ -15,7 +15,7 @@ library ini berguna untuk browsing file pdf dan mengambil file pdf dari gallery
 berikut tampilannya : 
 
 
-![GitHub Logo](/image/pdf_browser_3.jpg) ![GitHub Logo](/image/pdf_browser_4.jpg)
+![GitHub Logo](/image/pdf_browser_1.jpg) ![GitHub Logo](/image/pdf_browser_2.jpg)
 
 
 
