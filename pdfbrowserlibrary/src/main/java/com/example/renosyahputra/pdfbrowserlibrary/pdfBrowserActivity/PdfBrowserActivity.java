@@ -87,7 +87,29 @@ public class PdfBrowserActivity extends AppCompatActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if (requestCode == 200) {
+        boolean isMatch = false;
+        boolean isGranted = false;
+
+        for (String permission : permissions){
+            if (permission.equals(Manifest.permission.READ_EXTERNAL_STORAGE)){
+                isMatch = true;
+                break;
+            }
+
+            if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                isMatch = true;
+                break;
+            }
+        }
+
+        for (int status : grantResults){
+            if (status == PackageManager.PERMISSION_GRANTED){
+                isGranted = true;
+                break;
+            }
+        }
+
+        if (requestCode == 200 && isMatch && isGranted) {
             Intent i = getIntent();
             i.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             startActivity(i);
