@@ -62,6 +62,8 @@ tambahkan ke app.gradle :
                     
                     // pada saat file pdf dipilih
                     // letakkan kode anda untuk mengelola file pdf
+		    // pdfBrowserData.file adalah file pdf
+		    // pdfBrowserData.filename adalah filename pdf
                     
                 }
 
@@ -76,8 +78,29 @@ tambahkan ke app.gradle :
 
 ```
 
+* cara simple pemanggilan viewer : 
 
-* menggunakan pdf viewer modul : 
+```
+
+ 	PdfViewer.newInstance()
+            .setContext(this)
+            .setPdfFile(File("YOUR_PDF_FILE_PATH"))
+            .setOnPdfVewerListener(object : PdfViewer.OnPdfVewerListener {
+                override fun onFinishView() {
+
+                    // pdf viewer telah selesai
+
+                }
+
+            }).viewPDF()
+
+
+```
+
+
+
+
+* menggunakan pdf viewer modul jika anda lebih suka yg custom : 
 
 ```
 

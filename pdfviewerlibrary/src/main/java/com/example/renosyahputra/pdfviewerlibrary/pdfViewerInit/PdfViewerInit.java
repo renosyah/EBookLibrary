@@ -1,4 +1,4 @@
-package com.example.renosyahputra.pdfviewerlibrary;
+package com.example.renosyahputra.pdfviewerlibrary.pdfViewerInit;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -21,6 +21,7 @@ public class PdfViewerInit {
     private File pdfFile;
     private String pdfFileName;
     private OnPdfViewerListener listener;
+    private OnGetPdfPageSize onGetPdfPageSize;
 
     private ParcelFileDescriptor parcelFileDescriptor;
     private PdfRenderer pdfRenderer;
@@ -57,9 +58,21 @@ public class PdfViewerInit {
         return  _instance;
     }
 
+    public PdfViewerInit setOnGetPdfPageSize(OnGetPdfPageSize listener) {
+        _instance.onGetPdfPageSize = listener;
+        return  _instance;
+    }
+
     public PdfViewerInit previousPage(){
         if (_instance != null && prePage && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             showPage(currentPage.getIndex() - 1);
+        }
+        return _instance;
+    }
+
+    public PdfViewerInit setPage(int page){
+        if (_instance != null && nextPage && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            showPage(page);
         }
         return _instance;
     }
@@ -151,6 +164,11 @@ public class PdfViewerInit {
     private void showPage(int index) throws NullPointerException {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            if (onGetPdfPageSize != null){
+                onGetPdfPageSize.pdfPageSize(pdfRenderer.getPageCount());
+            }
+
             if (pdfRenderer.getPageCount() <= index) {
                 return;
             }
@@ -167,8 +185,7 @@ public class PdfViewerInit {
             currentPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
 
             if (listener != null){
-                listener.onRenderPdf(bitmap);
-                listener.onPageIndex(currentPage.getIndex());
+                listener.onRenderPdf(currentPage.getIndex(),bitmap);
             }
 
             updateUi();
@@ -199,8 +216,11 @@ public class PdfViewerInit {
     }
 
     public interface OnPdfViewerListener {
-        void onRenderPdf(@NonNull Bitmap bitmap);
-        void onPageIndex(@NonNull int page);
+        void onRenderPdf(@NonNull int page,@NonNull Bitmap bitmap);
         void onException(@NonNull Exception e);
+    }
+
+    public interface OnGetPdfPageSize {
+        void pdfPageSize(@NonNull int pageSize);
     }
 }

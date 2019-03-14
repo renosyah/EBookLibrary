@@ -16,21 +16,8 @@
                 android:id="@+id/pdfImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_launcher_background" android:scaleType="fitXY"/>
+                app:srcCompat="@drawable/pdf_logo" android:scaleType="center"/>
 
-        <ImageView
-                android:layout_gravity="center|left"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:srcCompat="@android:drawable/ic_media_previous"
-                android:id="@+id/previewPage"/>
-
-        <ImageView
-                android:layout_gravity="center|right"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:srcCompat="@android:drawable/ic_media_next"
-                android:id="@+id/nextPage"/>
 
     </FrameLayout>
 

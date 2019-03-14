@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.example.renosyahputra.pdfbrowserlibrary.PdfBrowserInit
-import com.example.renosyahputra.pdfviewerlibrary.PdfViewerInit
+import com.example.renosyahputra.pdfviewerlibrary.pdfViewerInit.PdfViewerInit
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(),
     View.OnClickListener,
     PdfViewerInit.OnPdfViewerListener,
     PdfBrowserInit.OnPdfBrowserListener{
+
 
 
     lateinit var context: Context
@@ -90,12 +91,8 @@ class MainActivity : AppCompatActivity(),
         Toast.makeText(context,"Finish browse pdf!",Toast.LENGTH_SHORT).show()
     }
 
-
-    override fun onRenderPdf(bitmap: Bitmap) {
+    override fun onRenderPdf(page: Int, bitmap: Bitmap) {
         pdfImage.setImageBitmap(bitmap)
-    }
-
-    override fun onPageIndex(page: Int) {
         Toast.makeText(context,"In Page : ${page}",Toast.LENGTH_SHORT).show()
     }
 
