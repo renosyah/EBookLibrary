@@ -11,9 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class Main2Activity : AppCompatActivity(),
     View.OnClickListener,
-    PdfBrowserInit.OnPdfBrowserListener, PdfViewer.OnPdfVewerListener {
-
-
+    PdfBrowserInit.OnPdfBrowserListener,
+    PdfViewer.OnPdfVewerListener {
 
     lateinit var context: Context
 
@@ -25,11 +24,7 @@ class Main2Activity : AppCompatActivity(),
 
     private fun initWidget(){
         context = this@Main2Activity
-
         pdfImage.setOnClickListener(this)
-
-
-
     }
 
     override fun onClick(v: View?) {
