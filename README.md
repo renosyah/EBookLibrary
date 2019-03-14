@@ -97,7 +97,9 @@ tambahkan ke app.gradle :
 
 ```
 
-
+## Hacking time
+berikut adalah beberapa modul yg bisa dipakai jika ingin mencustom  library ini aplikasi
+anda :  
 
 
 * menggunakan pdf viewer modul jika anda lebih suka yg custom : 
