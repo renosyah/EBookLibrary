@@ -119,7 +119,7 @@ anda :
             .setPdfFile(File("YOUR_PATH_TO_PDF"))
             .setPdfFileName("YOUR_PDF_FILENAME")
             .setOnPdfViewerListener(object : PdfViewerInit.OnPdfViewerListener{
-                override fun onRenderPdf(bmp : Bitmap) {
+                override fun onRenderPdf(page : Int,bmp : Bitmap) {
                     
                     // halaman pdf akan di render menjadi bitmap
                     // letakkan kode anda disini untuk
@@ -127,11 +127,6 @@ anda :
                     
                 }
 
-                override fun onPageIndex(page : Int) {
-                    
-                    // page yg sedang dipilih
-                    
-                }
 
                 override fun onException(e: java.lang.Exception) {
                     
