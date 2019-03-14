@@ -101,7 +101,7 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
                 || ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions( new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+                requestPermissions( new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 210);
             }
             isDenied = true;
 
@@ -113,10 +113,12 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        Intent i = getIntent();
-        i.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-        startActivity(i);
-        finish();
+        if (requestCode == 210) {
+            Intent i = getIntent();
+            i.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            startActivity(i);
+            finish();
+        }
 
 
     }

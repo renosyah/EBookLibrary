@@ -87,10 +87,12 @@ public class PdfBrowserActivity extends AppCompatActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        Intent i = getIntent();
-        i.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-        startActivity(i);
-        finish();
+        if (requestCode == 200) {
+            Intent i = getIntent();
+            i.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            startActivity(i);
+            finish();
+        }
 
 
     }
