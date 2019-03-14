@@ -33,6 +33,7 @@ class Main2Activity : AppCompatActivity(),
 
                 PdfBrowserInit.newInstance()
                     .setContext(context)
+                    .setEnableThumbnail(true)
                     .setOnPdfBrowserListener(this)
                     .browse()
 

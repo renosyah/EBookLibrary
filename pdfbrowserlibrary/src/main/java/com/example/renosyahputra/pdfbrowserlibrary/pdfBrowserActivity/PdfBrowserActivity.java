@@ -34,6 +34,7 @@ public class PdfBrowserActivity extends AppCompatActivity implements
     private GridView gridViewPdfFiles;
     private SwipeRefreshLayout swipeRefreshLayoutgridViewPdfFiles;
     private TextView textViewEmpty;
+    private Boolean enableThumbnail;
 
     private ArrayList<PdfBrowserInit.PdfBrowserData> datafilesPdf = new ArrayList<>();
 
@@ -46,6 +47,8 @@ public class PdfBrowserActivity extends AppCompatActivity implements
 
     private void initWidget(){
         context = this;
+
+        enableThumbnail = getIntent().getBooleanExtra("enableThumbnail",false);
 
         gridViewPdfFiles = findViewById(R.id.ActivityGridViewPdfFile);
         gridViewPdfFiles.setOnItemClickListener(this);
@@ -143,7 +146,9 @@ public class PdfBrowserActivity extends AppCompatActivity implements
     private void setAdapter(){
 
         CustomAdapterFilePdf adapterFilePdf = new CustomAdapterFilePdf(context,R.layout.custom_adapter_pdf_file,datafilesPdf);
+        adapterFilePdf.SetEnableTubnail(enableThumbnail);
         gridViewPdfFiles.setAdapter(adapterFilePdf);
+
 
         checkIsEmpty(datafilesPdf);
     }

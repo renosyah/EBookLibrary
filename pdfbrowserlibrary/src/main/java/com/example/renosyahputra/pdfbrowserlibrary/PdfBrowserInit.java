@@ -14,10 +14,16 @@ public class PdfBrowserInit {
 
     private static PdfBrowserInit _instance;
     private Context context;
+    private Boolean enableThumbnail = false;
     private PdfBrowserInit.OnPdfBrowserListener listener;
 
     public static PdfBrowserInit newInstance() {
         _instance = new PdfBrowserInit();
+        return _instance;
+    }
+
+    public PdfBrowserInit setEnableThumbnail(Boolean enableThumbnail) {
+        _instance.enableThumbnail = enableThumbnail;
         return _instance;
     }
 
@@ -43,6 +49,7 @@ public class PdfBrowserInit {
 
         FragmentDialogPdfBrowser fragmentDialogPdfBrowser = new  FragmentDialogPdfBrowser();
         fragmentDialogPdfBrowser.setListener(listener);
+        fragmentDialogPdfBrowser.setEnableThumbnail(enableThumbnail);
 
         try {
 

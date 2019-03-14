@@ -25,6 +25,11 @@ public class FragmentDialogPdfBrowser extends DialogFragment {
     private Context context;
     private PdfBrowserInit.OnPdfBrowserListener listener;
     private int RequestCode = 238;
+    private Boolean enableThumbnail = false;
+
+    public void setEnableThumbnail(Boolean enableThumbnail) {
+        this.enableThumbnail = enableThumbnail;
+    }
 
     public void setListener(PdfBrowserInit.OnPdfBrowserListener listener) {
         this.listener = listener;
@@ -44,7 +49,9 @@ public class FragmentDialogPdfBrowser extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        startActivityForResult(new Intent(context, PdfBrowserActivity.class), RequestCode);
+        Intent i = new Intent(context, PdfBrowserActivity.class);
+        i.putExtra("enableThumbnail",enableThumbnail);
+        startActivityForResult(i, RequestCode);
         super.onViewCreated(view, savedInstanceState);
     }
 

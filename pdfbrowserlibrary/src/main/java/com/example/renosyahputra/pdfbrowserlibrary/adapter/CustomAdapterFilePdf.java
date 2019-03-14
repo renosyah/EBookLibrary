@@ -2,7 +2,10 @@ package com.example.renosyahputra.pdfbrowserlibrary.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.PorterDuff;
+import android.graphics.Bitmap;
+import android.graphics.pdf.PdfRenderer;
+import android.os.Build;
+import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
@@ -15,6 +18,8 @@ import android.widget.TextView;
 import com.example.renosyahputra.pdfbrowserlibrary.PdfBrowserInit;
 import com.example.renosyahputra.pdfbrowserlibrary.R;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class CustomAdapterFilePdf extends ArrayAdapter<PdfBrowserInit.PdfBrowserData> {
@@ -30,9 +35,9 @@ public class CustomAdapterFilePdf extends ArrayAdapter<PdfBrowserInit.PdfBrowser
         this.objects = objects;
     }
 
-    int color = 0;
-    public void SetColor(int color){
-        this.color = color;
+    boolean enableTubnail = true;
+    public void SetEnableTubnail(boolean enableTubnail){
+        this.enableTubnail = enableTubnail;
     }
 
     @NonNull
@@ -56,11 +61,12 @@ public class CustomAdapterFilePdf extends ArrayAdapter<PdfBrowserInit.PdfBrowser
         PdfBrowserInit.PdfBrowserData item = getItem(position);
 
         holder.name.setText(item.filename);
-
         holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.pdf_logo, null));
-        if(color != 0) {
-            holder.image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+        if (getPdfTubnail(item.file) != null && enableTubnail) {
+            holder.image.setImageBitmap(getPdfTubnail(item.file));
         }
+
 
 
         return row;
@@ -69,5 +75,36 @@ public class CustomAdapterFilePdf extends ArrayAdapter<PdfBrowserInit.PdfBrowser
     private class DataList {
         public ImageView image;
         public TextView name;
+    }
+
+    private Bitmap getPdfTubnail(File file)  {
+        Bitmap bitmap = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            try {
+                ParcelFileDescriptor parcelFileDescriptor = ParcelFileDescriptor.open(file,
+                        ParcelFileDescriptor.MODE_READ_ONLY);
+
+                if (parcelFileDescriptor != null) {
+                    PdfRenderer pdfRenderer = new PdfRenderer(parcelFileDescriptor);
+
+                    PdfRenderer.Page currentPagePdf = pdfRenderer.openPage(0);
+                    bitmap = Bitmap.createBitmap(currentPagePdf.getWidth(), currentPagePdf.getHeight(),
+                            Bitmap.Config.ARGB_8888);
+
+                    currentPagePdf.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+
+                    currentPagePdf.close();
+                    pdfRenderer.close();
+                    parcelFileDescriptor.close();
+
+                }
+
+            }catch (IOException ignored){
+
+            }
+        }
+
+        return bitmap;
     }
 }
