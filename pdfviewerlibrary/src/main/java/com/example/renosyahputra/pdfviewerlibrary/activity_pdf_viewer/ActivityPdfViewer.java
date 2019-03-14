@@ -133,7 +133,7 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
                 break;
             }
         }
-        
+
         if (requestCode == 210 && isMatch && isGranted) {
             Intent i = getIntent();
             i.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
