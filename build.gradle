@@ -21,7 +21,6 @@ plugins {
 allprojects {
     repositories {
         maven { url "https://dl.bintray.com/renosyah/maven" }
-        maven { url "https://jitpack.io" }
         google()
         jcenter()
         

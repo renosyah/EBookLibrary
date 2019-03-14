@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.renosyahputra.pdfviewerlibrary.R;
-import com.github.chrisbanes.photoview.PhotoView;
+import com.example.renosyahputra.pdfviewerlibrary.photoview.PhotoView;
 
 import java.util.ArrayList;
 

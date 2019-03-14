@@ -102,7 +102,7 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
 
 
     private Boolean requestPermission(){
-        Boolean isDenied = false;
+        boolean isDenied = false;
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
                 || ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
 

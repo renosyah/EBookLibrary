@@ -32,7 +32,6 @@ tambahkan ke build.gradle :
 	allprojects {
     		repositories {
         		maven { url "https://dl.bintray.com/renosyah/maven" }
-        		maven { url "https://jitpack.io" }
         		...
        			...
     		}
@@ -46,7 +45,6 @@ tambahkan ke app.gradle :
 
 	dependencies {
     		...	
-    		implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     		implementation 'com.github.renosyah:PDF-Viewer-Library:1.0.0'
 		implementation 'com.github.renosyah:PDF-Browser-Library:1.0.0'
 	}
