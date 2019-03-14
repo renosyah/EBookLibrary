@@ -78,7 +78,7 @@ public class PdfBrowserActivity extends AppCompatActivity implements
                 requestPermissions( new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
             }
             isDenied = true;
-
+            textViewEmpty.setText(getString(R.string.text_empty_check_permission));
         }
 
         return isDenied;

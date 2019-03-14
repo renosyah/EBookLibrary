@@ -8,10 +8,13 @@
         android:layout_height="match_parent"
         tools:context=".pdfBrowserActivity.PdfBrowserActivity">
 
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/refresActivityGridViewPdfFile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" android:visibility="gone">
 
         <GridView
                 android:id="@+id/ActivityGridViewPdfFile"
@@ -33,7 +36,8 @@
             android:id="@+id/DataKosongTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=""
-            android:visibility="gone" />
+            android:text="@string/text_empty"
+            android:visibility="visible"/>
 
+    </FrameLayout>
 </LinearLayout>

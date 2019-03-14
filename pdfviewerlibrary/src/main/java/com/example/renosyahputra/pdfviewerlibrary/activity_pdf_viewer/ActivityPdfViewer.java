@@ -13,6 +13,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 import com.example.renosyahputra.pdfviewerlibrary.R;
 import com.example.renosyahputra.pdfviewerlibrary.customViewPagger.CustomViewPagger;
 import com.example.renosyahputra.pdfviewerlibrary.pdfViewerInit.PdfViewerDataObj;
@@ -29,6 +31,7 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
     private Intent intent;
 
     private CustomViewPagger viewPaggerPdf;
+    private TextView cannot_read_this_pdf;
     private PdfViewerInit pdfViewerInit = PdfViewerInit.newInstance();
 
 
@@ -50,6 +53,9 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
         intent = getIntent();
 
         pdfViewerDataObj = (PdfViewerDataObj) intent.getSerializableExtra("data");
+
+        cannot_read_this_pdf = findViewById(R.id.DataKosongTextView);
+        cannot_read_this_pdf.setText(getString(R.string.cant_read_pdf));
 
         viewPaggerPdf = findViewById(R.id.hackyViewPagerPdf);
         viewPaggerPdf.addOnPageChangeListener(this);
@@ -104,7 +110,7 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
                 requestPermissions( new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 210);
             }
             isDenied = true;
-
+            cannot_read_this_pdf.setText(getString(R.string.cant_read_pdf_is_denied));
         }
 
         return isDenied;
@@ -146,6 +152,10 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
 
     @Override
     public void pdfPageSize(@NonNull int pageSize) {
+
+        viewPaggerPdf.setVisibility(View.VISIBLE);
+        cannot_read_this_pdf.setVisibility(View.GONE);
+
         bitmapsPdf.clear();
         for (int i=0;i<pageSize;i++){
             bitmapsPdf.add(emptyBitmap());

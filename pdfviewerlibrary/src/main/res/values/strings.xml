@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PdfViewerLibrary</string>
+    <string name="cant_read_pdf">Cannot Read this PDF File</string>
+    <string name="cant_read_pdf_is_denied">Cannot Read this PDF File, Acces Denied</string>
 </resources>

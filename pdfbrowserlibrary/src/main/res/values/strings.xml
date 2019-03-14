@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PdfBrowserLibrary</string>
     <string name="text_empty">No File PDF Found</string>
+    <string name="text_empty_check_permission">No File PDF Found, Access Denied</string>
 </resources>

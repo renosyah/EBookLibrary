@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+        android:gravity="center"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,8 +9,20 @@
         android:layout_height="match_parent"
         tools:context=".activity_pdf_viewer.ActivityPdfViewer">
 
+    <TextView
+            android:textSize="20sp"
+            android:gravity="center"
+            android:id="@+id/DataKosongTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/cant_read_pdf"
+            android:visibility="visible"/>
+
+
     <com.example.renosyahputra.pdfviewerlibrary.customViewPagger.CustomViewPagger
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/hackyViewPagerPdf"/>
+            android:id="@+id/hackyViewPagerPdf"
+            android:visibility="gone"/>
+
 </LinearLayout>
