@@ -1,6 +1,7 @@
 package com.example.renosyahputra.pdfviewerlibrary.activity_pdf_viewer;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import com.example.renosyahputra.pdfviewerlibrary.R;
 import com.example.renosyahputra.pdfviewerlibrary.customViewPagger.CustomViewPagger;
 import com.example.renosyahputra.pdfviewerlibrary.pdfViewerInit.PdfViewerDataObj;
@@ -147,4 +149,14 @@ public class ActivityPdfViewer extends AppCompatActivity implements ViewPager.On
         return bmp;
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            pdfViewerInit.closePdf();
+            setResult(Activity.RESULT_OK,new Intent());
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
