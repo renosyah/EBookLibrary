@@ -63,8 +63,10 @@ public class CustomAdapterFilePdf extends ArrayAdapter<PdfBrowserInit.PdfBrowser
         holder.name.setText(item.filename);
         holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.pdf_logo, null));
 
-        if (getPdfTubnail(item.file) != null && enableTubnail) {
-            holder.image.setImageBitmap(getPdfTubnail(item.file));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (enableTubnail && getPdfTubnail(item.file) != null) {
+                holder.image.setImageBitmap(getPdfTubnail(item.file));
+            }
         }
 
 
