@@ -2,6 +2,9 @@ package com.example.renosyahputra.pdfviewerlibrary;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import com.example.renosyahputra.pdfviewerlibrary.fragment_dialog.FragmentDialogPdfViewer;
 import com.example.renosyahputra.pdfviewerlibrary.pdfViewerInit.PdfViewerDataObj;
 
@@ -47,6 +50,15 @@ public class PdfViewer {
         FragmentDialogPdfViewer fragmentDialogPdfViewer = new FragmentDialogPdfViewer();
         fragmentDialogPdfViewer.setPdfViewerDataObj(new PdfViewerDataObj(pdfFile,pdfFile.getName()));
         fragmentDialogPdfViewer.setListener(listener);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(pdfFile), "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            context.startActivity(intent);
+            return;
+        }
 
         try {
 
